@@ -78,7 +78,7 @@ The browser-side JavaScript does this:
 
 This project includes two parallel browser-driven acceptance test approaches:
 
-- Selenium: `src/test/java/com/example/bookdemo/BookSeleniumAcceptanceTest.java` (ChromeDriver + WebDriverManager)
+- Selenium: `src/test/java/com/example/bookdemo/BookSeleniumAcceptanceTest.java` (ChromeDriver + WebDriverManager, described in `selenium101.md`)
 - Playwright: `src/test/java/com/example/bookdemo/BookPlaywrightAcceptanceTest.java` (Playwright Java API, described in `playwright101.md`)
 
 Both execute the same user journey:
