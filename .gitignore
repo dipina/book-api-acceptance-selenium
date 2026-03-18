@@ -1,0 +1,93 @@
+############################################
+# Maven / Build
+############################################
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+build/
+
+############################################
+# Logs
+############################################
+*.log
+logs/
+*.out
+
+############################################
+# Spring Boot
+############################################
+*.pid
+*.pid.lock
+
+############################################
+# OS files
+############################################
+.DS_Store
+Thumbs.db
+
+############################################
+# IDEs
+############################################
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+
+############################################
+# Java
+############################################
+*.class
+*.jar
+*.war
+*.ear
+
+############################################
+# Selenium / WebDriver
+############################################
+# WebDriverManager cache (can be large, auto-recreated)
+~/.cache/selenium/
+~/.cache/selenium/*
+
+# Downloaded drivers (if any local fallback)
+chromedriver*
+geckodriver*
+
+############################################
+# Test artifacts
+############################################
+screenshots/
+test-output/
+reports/
+
+############################################
+# Environment / config
+############################################
+.env
+*.env
+application-local.yml
+application-local.properties
+
+############################################
+# Node (if frontend tooling is ever added)
+############################################
+node_modules/
+
+############################################
+# Misc
+############################################
+*.swp
+*.tmp

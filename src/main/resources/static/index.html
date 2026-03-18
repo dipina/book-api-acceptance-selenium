@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+            max-width: 800px;
+        }
+        form {
+            display: grid;
+            gap: 0.75rem;
+            max-width: 400px;
+            margin-bottom: 1.5rem;
+        }
+        input, button {
+            padding: 0.6rem;
+            font-size: 1rem;
+        }
+        .message {
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+        .error {
+            color: #b00020;
+        }
+        .success {
+            color: #0a7a33;
+        }
+        ul {
+            padding-left: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Book Registration Demo</h1>
+    <p>This page submits a POST request to a Spring Boot REST API and refreshes the HTML view.</p>
+
+    <form id="bookForm">
+        <label for="title">Title</label>
+        <input id="title" name="title" type="text" required>
+
+        <label for="author">Author</label>
+        <input id="author" name="author" type="text" required>
+
+        <button id="saveBtn" type="submit">Create book</button>
+    </form>
+
+    <div id="message" class="message"></div>
+
+    <h2>Books</h2>
+    <ul id="bookList"></ul>
+
+    <script>
+        async function loadBooks() {
+            const response = await fetch('/api/books');
+            const books = await response.json();
+            const bookList = document.getElementById('bookList');
+            bookList.innerHTML = '';
+
+            books.forEach(book => {
+                const item = document.createElement('li');
+                item.className = 'book-item';
+                item.innerText = `${book.title} — ${book.author}`;
+                bookList.appendChild(item);
+            });
+        }
+
+        async function createBook(event) {
+            event.preventDefault();
+
+            const message = document.getElementById('message');
+            const title = document.getElementById('title').value.trim();
+            const author = document.getElementById('author').value.trim();
+
+            message.textContent = '';
+            message.className = 'message';
+
+            try {
+                const response = await fetch('/api/books', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ title, author })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to create book');
+                }
+
+                const createdBook = await response.json();
+                message.textContent = `Created book #${createdBook.id}: ${createdBook.title}`;
+                message.classList.add('success');
+
+                document.getElementById('bookForm').reset();
+                await loadBooks();
+            } catch (error) {
+                message.textContent = 'Could not create the book.';
+                message.classList.add('error');
+            }
+        }
+
+        document.getElementById('bookForm').addEventListener('submit', createBook);
+        loadBooks();
+    </script>
+</body>
+</html>
