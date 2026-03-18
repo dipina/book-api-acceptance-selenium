@@ -158,6 +158,8 @@ Selenium is appropriate when you want to validate the actual browser-level user 
 
 That makes this a stronger acceptance-level test than a plain controller or API test.
 
+Full documentation for Selenium can be found at [The Selenium Browser Automation Project](https://www.selenium.dev/documentation/)
+
 ### What the test does exactly
 
 The included `BookAcceptanceTest` performs the following steps:
