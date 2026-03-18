@@ -1,4 +1,4 @@
-# Spring Boot REST + HTML Form + Selenium Acceptance Test Demo
+# Spring Boot REST + HTML Form + Selenium/Playwright Acceptance Tests Demo
 
 This Maven project is a complete, minimal example of an acceptance test for a Spring Boot application with:
 
