@@ -6,6 +6,8 @@ This Maven project is a complete, minimal example of an acceptance test for a Sp
 - a static HTML user interface served by the same app
 - JavaScript in the page that sends a `POST` request to the REST API
 - a Selenium-based acceptance test that drives a real browser and verifies the visible outcome
+- a Playwright-based acceptance test that drives a real browser and verifies the visible outcome
+
 
 The demo use case is intentionally simple: a user fills in a form to create a book, the browser sends `POST /api/books`, and the page updates the list of books.
 
