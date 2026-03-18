@@ -25,9 +25,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class BookAcceptanceTest {
+class BookSeleniumAcceptanceTest {
 
-    private static final Logger logger = LoggerFactory.getLogger(BookAcceptanceTest.class);
+    private static final Logger logger = LoggerFactory.getLogger(BookSeleniumAcceptanceTest.class);
 
     @LocalServerPort
     private int port;

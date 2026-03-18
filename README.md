@@ -30,7 +30,8 @@ book-demo/
 │   │       └── index.html
 │   └── test/
 │       └── java/com/example/bookdemo/
-│           └── BookAcceptanceTest.java
+│           ├── BookSeleniumAcceptanceTest.java
+│           └── BookPlaywrightAcceptanceTest.java
 ```
 
 ## Functional overview
@@ -70,6 +71,57 @@ The browser-side JavaScript does this:
 2. sends a JSON `POST` request to `/api/books`
 3. displays a success or error message
 4. reloads the visible list of books from `GET /api/books`
+
+## Acceptance tests (Selenium + Playwright)
+
+This project includes two parallel browser-driven acceptance test approaches:
+
+- Selenium: `src/test/java/com/example/bookdemo/BookSeleniumAcceptanceTest.java` (ChromeDriver + WebDriverManager)
+- Playwright: `src/test/java/com/example/bookdemo/BookPlaywrightAcceptanceTest.java` (Playwright Java API, described in `playwright101.md`)
+
+Both execute the same user journey:
+
+- open `/index.html`
+- enter book title and author
+- click **Create book**
+- verify success message and updated book list
+
+### Run tests
+
+From project root, run:
+
+```bash
+mvn test
+```
+
+This executes both acceptance test classes:
+
+- `BookSeleniumAcceptanceTest`
+- `BookPlaywrightAcceptanceTest`
+
+#### Run only one framework
+
+- Selenium only: `mvn test -Pselenium`
+- Playwright only: `mvn test -Pplaywright`
+
+### How to run Playwright (example)
+
+1. add `com.microsoft.playwright:playwright` dependency in `pom.xml`
+2. run browser installer:
+   ```bash
+   mvn -q exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install"
+   ```
+3. run Playwright-based tests alongside Maven tests:
+   ```bash
+   mvn test -Dtest=YourPlaywrightTestClass
+   ```
+
+### Why both are useful
+
+- Selenium is the established standard and integrates with many existing Java Selenium frameworks.
+- Playwright provides better built-in waiting, cross-browser parity (Chromium/Firefox/WebKit), and a modern API.
+
+Using both gives confidence in the same user story with different automation drivers.
 
 ## Requirements
 
@@ -158,11 +210,13 @@ Selenium is appropriate when you want to validate the actual browser-level user 
 
 That makes this a stronger acceptance-level test than a plain controller or API test.
 
-Full documentation for Selenium can be found at [The Selenium Browser Automation Project](https://www.selenium.dev/documentation/) and in the local guide [selenium101.md](selenium101.md)
+Full documentation for Selenium can be found at [The Selenium Browser Automation Project](https://www.selenium.dev/documentation/) and in the local guide [selenium101.md](selenium101.md).
+
+For an alternative and often more developer-friendly browser automation approach, see [Playwright 101](playwright101.md).
 
 ### What the test does exactly
 
-The included `BookAcceptanceTest` performs the following steps:
+The included `BookSeleniumAcceptanceTest` performs the following steps:
 
 1. starts the Spring Boot application with `@SpringBootTest(webEnvironment = RANDOM_PORT)`
 2. clears the in-memory repository before each test
@@ -216,7 +270,7 @@ That is fine here because the test uses headless Chrome.
 
 ### Running a visible browser instead of headless
 
-To watch the test run, edit `BookAcceptanceTest.java` and remove or comment out:
+To watch the Selenium test run, edit `BookSeleniumAcceptanceTest.java` and remove or comment out:
 
 ```java
 options.addArguments("--headless=new");
