@@ -158,7 +158,7 @@ Selenium is appropriate when you want to validate the actual browser-level user 
 
 That makes this a stronger acceptance-level test than a plain controller or API test.
 
-Full documentation for Selenium can be found at [The Selenium Browser Automation Project](https://www.selenium.dev/documentation/)
+Full documentation for Selenium can be found at [The Selenium Browser Automation Project](https://www.selenium.dev/documentation/) and in the local guide [selenium101.md](selenium101.md)
 
 ### What the test does exactly
 
